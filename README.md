@@ -1,18 +1,20 @@
 # educated-functional-programming-haskell
 
-# 환경
+# Haskell Basic
+
+## 환경
 - sudo apt install ghc
 
-# 함수형 언어의 특징을 가져온 것
+## 함수형 언어의 특징을 가져온 것
 - C++20 의 Concept  (Type Class를 가져온 것)
 - 람다 표현식
 - 커리된 함수
 
-# hello.hs
+## hello.hs
 - ; 은 붙이지 않아도 된다.
 
 
-## interactive mode
+### interactive mode
 - ghci
 - :q 
 - :load hello.hs
@@ -21,7 +23,7 @@
 - foo
 - main
 
-### commands
+#### commands
 - :load  , :reload
 - :set, :unset
 - :show
@@ -33,21 +35,21 @@
 - .ghci는 linux에서는 잘 먹지 않는다.
 
 
-# 기본적 특징
-## type
+## 기본적 특징
+### type
 - :type    <- data type 조사
 - Haskell 기본 데이타 타입은 대문자로 시작한다.
 - Bool,Char,Int,Integer,Float,Double , String
 - list( [] ) , tuple( () )
 - :t 3
 - :t 3.3
-## operator
+### operator
 - -3+5  -> 2
 - 5 + -3    -> error   이때는 괄호 사용하면 됨
 -  not
 - /=  이 !=의 의미
 
-# Function Application
+## Function Application
 - 함수를 사용하는 방법 : 괄호대신 space를 사용하여 인자 전달
   - > succ 5
 - 함수를 적용 (Application)이라고 표현  (호출대신 적용이란 표현을 사용)
@@ -61,19 +63,19 @@
   - 3 + 4
   -  (+) 3 4
 
-# 함수 만들기
+## 함수 만들기
 - 함수 이름은 반드시 소문자로 시작
 - 타입은 대문자로 시작
 - func1.hs
   - 함수이름::input type -> output type
   - 함수이름 매개변수=함수구현
 
-# Multi-line in ghci
+## Multi-line in ghci
 - ;을 사용하는 방법
 - :{  와  :} 을 사용하는 방법
 
 
-# Generic
+## Generic
 - :t 함수로 type을 알려준다.
 - 암시적 형변환을 허용하지 않는다.
 - 함수 overloading이 지원하지 않는다. 인자 타입이 달라도 동일 이름의 함수를 만들 수 없다.
@@ -81,7 +83,7 @@
 - 함수 타입 선언을 생략한 경우 자동으로 generic 버젼으로 만들게 된다.
 
 
-# Type Class
+## Type Class
 - generic에서 + 가 있으면 모든게 plus를 지원해야 하는데
 - 타입클래스 (Num +,-,*,/) : Int 타입은 Num 타입 클래스의 인스턴스 이다.
 - Enum (succ,pred...)  : 다음을 구할수 있는 타입 클래스
@@ -89,7 +91,7 @@
   - 함수이름::Num a=>a->a
 - 선언부를 만들지 말고 , 구현부만 만들어도 알아서 해주는 경우도 있다. 이때 :type으로 보면 어떻게 구현되어져있는지도 볼수 있다.
 
-## 클래스 제약
+### 클래스 제약
 - :t succ 를 하면 어떤  type인지 알수 있다.
 - :t mac
 - :t (+)    <- 전위연산자로 바꾸면 된다.
@@ -98,7 +100,7 @@
 - :i Eq
 - :i Int    <- Int가 어떤 instance를 만족하는지 알수 있다.
 
-## type class의 종류
+### type class의 종류
 - Num
 - Integral : 정수
 - Floating : 실수
@@ -117,7 +119,7 @@
   - 2개 이상의 class 제약을 넘기려면 반드시 ( ) 으로 묶어야 한다.
   - :type koo
 
-# 다형성 상수
+## 다형성 상수
 - type.hs
   - 3은 임의의 타입중에 하나이다.  3::Num a=> a
   - :t 3::Int    <- 3을 int로 type annotation
@@ -128,14 +130,14 @@
 
 
 
-# list
+## list
 - 같은 타입의 값을 여러개 보관
 - 대괄호 [ ]
 - 요소의 타입이 같으면 개수와 상관없이 같은 타입
   - [1,2]와 [1,2,3]은 같은 타입
 - 문자열(STring)은 Char의 list ([Char]) 이다.
 
-## 연산
+### 연산
 - list 의 list
   - [[1,2],[1,2,3]] 문제 없다.
 - ++ : 2개 list 결합
@@ -151,7 +153,7 @@
 - drop 3 [1,2,3,4,5] => [4,5]
 - take 3 [1..]  => [1,2,3]
 
-## 함수
+### 함수
 - length
 - null : is null
 - reverse
@@ -160,12 +162,12 @@
 - elem : 특정 요소가 있는지 조사 
   - elem 3 [1,2,3]  => True
 
-## Data.List 모듈
+### Data.List 모듈
 - import Data.List
 - sort
 
 
-## list 생성 기술
+### list 생성 기술
 - replicate : 똑같은 값을 가지는 list 생성
   - replicate 3 1 => [1,1,1]
 - repeat 와 무한 리스트
@@ -180,7 +182,7 @@
   - [10,9 .. 1]        
   - [10..1] => []
 
-## list comprehension  (통합)
+### list comprehension  (통합)
 - generator와 predicator를 사용해서 새로운 list를 생성
 
 - generator
@@ -199,5 +201,24 @@
 - size xs=sum[1 | x<-xs]   -- length와 같은 함수
   - size xs=sum[1 | _<-xs]
 
-# tuple
+## tuple
 - 서로 다른 타입의 값을 여러개 보관할수 있는 타입
+- ( )를 사용해서 생성
+- 요소의 타입이 다르거나, 요소의 개수가 다르면 모두 다른 타입이다.
+- list 와 tuple
+  - 3개의 점을 보관하는 리스트 만들기
+  - [ [1,1] , [2,2] , [3,3,1]  ] 에러이길 원하나 에러가 아님
+  - [ (1,1) , (2,2) , (3,3,1)  ]  에러가 발생
+
+- pair
+  - 요소의 개수가 2개
+  - fst , snd 함수를 통해서 요소의 값을 꺼낸다.
+
+- zip 함수
+  - list 2개를 받아서 tuple의 list를 생성하는 함수
+  - list의 길이가 다른 경우 , 필요한 요소만 사용하고 나머지는 무시한다.
+
+
+# Function
+
+## Pattern Matching & Guard
