@@ -534,8 +534,8 @@ myflip2 f x y = f y x
 
 - map
   - map::(a->b) -> [a] -> [b]
-  ```haskell
-  r1 = map (+3) [1,2,3,4]
+```haskell
+r1 = map (+3) [1,2,3,4]
 
 r2 = map("Hi " ++)["Kim" , "L" , "P"]
 -- ["Hi Kim", "Hi L" , "Hi P"]
