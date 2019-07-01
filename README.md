@@ -1,21 +1,74 @@
-# educated-functional-programming-haskell
+1\.  [educated-functional-programming-haskell](#educated-functional-programming-haskell)  
+2\.  [Haskell Basic](#haskellbasic)  
+2.1\.  [환경](#환경)  
+2.2\.  [함수형 언어의 특징을 가져온 것](#함수형언어의특징을가져온것)  
+2.3\.  [hello.hs](#hello.hs)  
+2.3.1\.  [interactive mode](#interactivemode)  
+2.3.1.1\.  [commands](#commands)  
+2.4\.  [기본적 특징](#기본적특징)  
+2.4.1\.  [type](#type)  
+2.4.2\.  [operator](#operator)  
+2.5\.  [Function Application](#functionapplication)  
+2.6\.  [함수 만들기](#함수만들기)  
+2.7\.  [Multi-line in ghci](#multi-lineinghci)  
+2.8\.  [Generic](#generic)  
+2.9\.  [Type Class](#typeclass)  
+2.9.1\.  [클래스 제약](#클래스제약)  
+2.9.2\.  [type class의 종류](#typeclass의종류)  
+2.10\.  [다형성 상수](#다형성상수)  
+2.11\.  [list](#list)  
+2.11.1\.  [연산](#연산)  
+2.11.2\.  [함수](#함수)  
+2.11.3\.  [Data.List 모듈](#data.list모듈)  
+2.11.4\.  [list 생성 기술](#list생성기술)  
+2.11.5\.  [list comprehension  (통합)](#listcomprehension통합)  
+2.12\.  [tuple](#tuple)  
+3\.  [Function](#function)  
+3.1\.  [Pattern Matching & Guard](#patternmatching&guard)  
+3.1.1\.  [tuple을 사용하는 패턴 매칭 (func5.hs)](#tuple을사용하는패턴매칭func5.hs)  
+3.1.2\.  [list를 사용하는 패턴 매칭 (func5.hs)](#list를사용하는패턴매칭func5.hs)  
+3.1.3\.  [Guard : C언어의 if else](#guard:c언어의ifelse)  
+3.1.4\.  [where](#where)  
+3.2\.  [Recursion & Curry](#recursion&curry)  
+3.2.1\.  [Recursion](#recursion)  
+3.2.2\.  [curry](#curry)  
+3.3\.  [고차함수 (HighOrder Function)](#고차함수highorderfunction)  
+3.3.1\.  [고차 (high-order) 함수](#고차high-order함수)  
+3.3.2\.  [함수 활용 - zipWith](#함수활용-zipwith)  
+3.3.3\.  [함수 활용 - flip , map](#함수활용-flipmap)  
+3.3.4\.  [함수의 활용 - filter , fold](#함수의활용-filterfold)  
+3.3.5\.  [함수 적용 / 합성](#함수적용/합성)  
+
+<a name="educated-functional-programming-haskell"></a>
+
+# 1\. educated-functional-programming-haskell
 - example : git clone https://github.com/codenuri/HASKELL
 
-# Haskell Basic
+<a name="haskellbasic"></a>
 
-## 환경
+# 2\. Haskell Basic
+
+<a name="환경"></a>
+
+## 2.1\. 환경
 - sudo apt install ghc
 
-## 함수형 언어의 특징을 가져온 것
+<a name="함수형언어의특징을가져온것"></a>
+
+## 2.2\. 함수형 언어의 특징을 가져온 것
 - C++20 의 Concept  (Type Class를 가져온 것)
 - 람다 표현식
 - 커리된 함수
 
-## hello.hs
+<a name="hello.hs"></a>
+
+## 2.3\. hello.hs
 - ; 은 붙이지 않아도 된다.
 
 
-### interactive mode
+<a name="interactivemode"></a>
+
+### 2.3.1\. interactive mode
 - ghci
 - :q 
 - :load hello.hs
@@ -24,7 +77,9 @@
 - foo
 - main
 
-#### commands
+<a name="commands"></a>
+
+#### 2.3.1.1\. commands
 - :load  , :reload
 - :set, :unset
 - :show
@@ -36,21 +91,29 @@
 - .ghci는 linux에서는 잘 먹지 않는다.
 
 
-## 기본적 특징
-### type
+<a name="기본적특징"></a>
+
+## 2.4\. 기본적 특징
+<a name="type"></a>
+
+### 2.4.1\. type
 - :type    <- data type 조사
 - Haskell 기본 데이타 타입은 대문자로 시작한다.
 - Bool,Char,Int,Integer,Float,Double , String
 - list( [] ) , tuple( () )
 - :t 3
 - :t 3.3
-### operator
+<a name="operator"></a>
+
+### 2.4.2\. operator
 - -3+5  -> 2
 - 5 + -3    -> error   이때는 괄호 사용하면 됨
 -  not
 - /=  이 !=의 의미
 
-## Function Application
+<a name="functionapplication"></a>
+
+## 2.5\. Function Application
 - 함수를 사용하는 방법 : 괄호대신 space를 사용하여 인자 전달
   - > succ 5
 - 함수를 적용 (Application)이라고 표현  (호출대신 적용이란 표현을 사용)
@@ -64,19 +127,25 @@
   - 3 + 4
   -  (+) 3 4
 
-## 함수 만들기
+<a name="함수만들기"></a>
+
+## 2.6\. 함수 만들기
 - 함수 이름은 반드시 소문자로 시작
 - 타입은 대문자로 시작
 - func1.hs
   - 함수이름::input type -> output type
   - 함수이름 매개변수=함수구현
 
-## Multi-line in ghci
+<a name="multi-lineinghci"></a>
+
+## 2.7\. Multi-line in ghci
 - ;을 사용하는 방법
 - :{  와  :} 을 사용하는 방법
 
 
-## Generic
+<a name="generic"></a>
+
+## 2.8\. Generic
 - :t 함수로 type을 알려준다.
 - 암시적 형변환을 허용하지 않는다.
 - 함수 overloading이 지원하지 않는다. 인자 타입이 달라도 동일 이름의 함수를 만들 수 없다.
@@ -84,7 +153,9 @@
 - 함수 타입 선언을 생략한 경우 자동으로 generic 버젼으로 만들게 된다.
 
 
-## Type Class
+<a name="typeclass"></a>
+
+## 2.9\. Type Class
 - generic에서 + 가 있으면 모든게 plus를 지원해야 하는데
 - 타입클래스 (Num +,-,*,/) : Int 타입은 Num 타입 클래스의 인스턴스 이다.
 - Enum (succ,pred...)  : 다음을 구할수 있는 타입 클래스
@@ -92,7 +163,9 @@
   - 함수이름::Num a=>a->a
 - 선언부를 만들지 말고 , 구현부만 만들어도 알아서 해주는 경우도 있다. 이때 :type으로 보면 어떻게 구현되어져있는지도 볼수 있다.
 
-### 클래스 제약
+<a name="클래스제약"></a>
+
+### 2.9.1\. 클래스 제약
 - :t succ 를 하면 어떤  type인지 알수 있다.
 - :t mac
 - :t (+)    <- 전위연산자로 바꾸면 된다.
@@ -101,7 +174,9 @@
 - :i Eq
 - :i Int    <- Int가 어떤 instance를 만족하는지 알수 있다.
 
-### type class의 종류
+<a name="typeclass의종류"></a>
+
+### 2.9.2\. type class의 종류
 - Num
 - Integral : 정수
 - Floating : 실수
@@ -120,7 +195,9 @@
   - 2개 이상의 class 제약을 넘기려면 반드시 ( ) 으로 묶어야 한다.
   - :type koo
 
-## 다형성 상수
+<a name="다형성상수"></a>
+
+## 2.10\. 다형성 상수
 - type.hs
   - 3은 임의의 타입중에 하나이다.  3::Num a=> a
   - :t 3::Int    <- 3을 int로 type annotation
@@ -131,14 +208,18 @@
 
 
 
-## list
+<a name="list"></a>
+
+## 2.11\. list
 - 같은 타입의 값을 여러개 보관
 - 대괄호 [ ]
 - 요소의 타입이 같으면 개수와 상관없이 같은 타입
   - [1,2]와 [1,2,3]은 같은 타입
 - 문자열(STring)은 Char의 list ([Char]) 이다.
 
-### 연산
+<a name="연산"></a>
+
+### 2.11.1\. 연산
 - list 의 list
   - [[1,2],[1,2,3]] 문제 없다.
 - ++ : 2개 list 결합
@@ -154,7 +235,9 @@
 - drop 3 [1,2,3,4,5] => [4,5]
 - take 3 [1..]  => [1,2,3]
 
-### 함수
+<a name="함수"></a>
+
+### 2.11.2\. 함수
 - length
 - null : is null
 - reverse
@@ -163,12 +246,16 @@
 - elem : 특정 요소가 있는지 조사 
   - elem 3 [1,2,3]  => True
 
-### Data.List 모듈
+<a name="data.list모듈"></a>
+
+### 2.11.3\. Data.List 모듈
 - import Data.List
 - sort
 
 
-### list 생성 기술
+<a name="list생성기술"></a>
+
+### 2.11.4\. list 생성 기술
 - replicate : 똑같은 값을 가지는 list 생성
   - replicate 3 1 => [1,1,1]
 - repeat 와 무한 리스트
@@ -183,7 +270,9 @@
   - [10,9 .. 1]        
   - [10..1] => []
 
-### list comprehension  (통합)
+<a name="listcomprehension통합"></a>
+
+### 2.11.5\. list comprehension  (통합)
 - generator와 predicator를 사용해서 새로운 list를 생성
 
 - generator
@@ -202,7 +291,9 @@
 - size xs=sum[1 | x<-xs]   -- length와 같은 함수
   - size xs=sum[1 | _<-xs]
 
-## tuple
+<a name="tuple"></a>
+
+## 2.12\. tuple
 - 서로 다른 타입의 값을 여러개 보관할수 있는 타입
 - ( )를 사용해서 생성
 - 요소의 타입이 다르거나, 요소의 개수가 다르면 모두 다른 타입이다.
@@ -223,9 +314,13 @@
 
 
 
-# Function
+<a name="function"></a>
 
-## Pattern Matching & Guard
+# 3\. Function
+
+<a name="patternmatching&guard"></a>
+
+## 3.1\. Pattern Matching & Guard
 - 패턴 매치을 사용한 함수 만들기
   - 함수의 인자의 패턴에 따라 서로 다른 구현을 제공
   - 매칭은 위에서부터 match를 한다. 
@@ -237,7 +332,9 @@ translate 2 = "two"
 translate _ = "sorry"
 ```
 
-### tuple을 사용하는 패턴 매칭 (func5.hs)
+<a name="tuple을사용하는패턴매칭func5.hs"></a>
+
+### 3.1.1\. tuple을 사용하는 패턴 매칭 (func5.hs)
 - addPair (1,1) (2,3)
 - func5.hs
   - pair 이용
@@ -264,7 +361,9 @@ third (_,_,x) = x
 ```
 
 
-### list를 사용하는 패턴 매칭 (func5.hs)
+<a name="list를사용하는패턴매칭func5.hs"></a>
+
+### 3.1.2\. list를 사용하는 패턴 매칭 (func5.hs)
 - list 패턴 매칭  (:)  으로 : 으로 구분을 한다.
 ```haskell
 -- list pattern matching  : from list -> type
@@ -308,7 +407,9 @@ caseex x = "result is " ++ case x of 0 -> "zero"
 
 ```
 
-### Guard : C언어의 if else
+<a name="guard:c언어의ifelse"></a>
+
+### 3.1.3\. Guard : C언어의 if else
 - 조건에 따라 함수 구현을 별도로 제공하는 것
 ```
 함수이름 매개변수1 매개변수2...
@@ -327,7 +428,9 @@ grade score
     | otherwise = 'B'
 ```
 
-### where
+<a name="where"></a>
+
+### 3.1.4\. where
 - where에는 자주 쓰는 것들을 적어두면 된다.
 - 2과목 점수를 입력 받아 평균을 구해서 등급을 반환하는 함수
 ```haskell
@@ -350,9 +453,13 @@ grade2 score1 score2
 
 
 
-## Recursion & Curry 
+<a name="recursion&curry"></a>
 
-### Recursion
+## 3.2\. Recursion & Curry 
+
+<a name="recursion"></a>
+
+### 3.2.1\. Recursion
 - recursion.hs
 ```haskell
 -- recursive function
@@ -398,7 +505,9 @@ mytake n (x:xs) = x : mytake (n-1) xs
   -- mytake (-1) [5,6]
 ```
 
-### curry
+<a name="curry"></a>
+
+### 3.2.2\. curry
 - curry.hs
 - 함수 호출과 결합 방향
   - 함수 호출은 왼쪽에서 오른쪽으로 간다. (ex. succ max 3 5 하면 error가 나오므로 () 으로 먼저 할 것을 묶어주어야 한다.)
@@ -458,9 +567,13 @@ hoo = (+5)
 ```
 
 
-## 고차함수 (HighOrder Function)
+<a name="고차함수highorderfunction"></a>
 
-### 고차 (high-order) 함수
+## 3.3\. 고차함수 (HighOrder Function)
+
+<a name="고차high-order함수"></a>
+
+### 3.3.1\. 고차 (high-order) 함수
 - highorder.hs
 ```haskell
 -- Int -> Int -> Int
@@ -479,7 +592,9 @@ applyTwice f x = f (f x)
   - 람다 표현식 사용 : applyTwice (\x->x*3) 5   
     - 인자가 1개인 곳에 인자 2개로 보낼때 : applyTwice((\x y -> x*y) 2) 5
 
-### 함수 활용 - zipWith
+<a name="함수활용-zipwith"></a>
+
+### 3.3.2\. 함수 활용 - zipWith
 - zipWith : zipWith.hs
   - :t zipWith
   - (a->b->c)->[a]->[b]->[c]
@@ -514,7 +629,9 @@ myzipWith _ _ [] = []
 myzipWith f (x:xs) (y:ys) =  f x y : myzipWith f xs ys
 ```
 
-### 함수 활용 - flip , map
+<a name="함수활용-flipmap"></a>
+
+### 3.3.3\. 함수 활용 - flip , map
 
 - flip : flip.hs
   - :t flip
@@ -562,7 +679,9 @@ mymap _ [] = []
 mymap f (x:xs)  = f x : mymap f xs
 ```
 
-### 함수의 활용 - filter , fold
+<a name="함수의활용-filterfold"></a>
+
+### 3.3.4\. 함수의 활용 - filter , fold
 - filter : filter.hs
   - filter::(a->Bool)->[a]->[a]
   - 리스트 요소중 조건자(predicator)를 만족하는 요소만을 가진 새로운 리스트 반환
@@ -612,7 +731,9 @@ r5 = foldl(\x y -> y:x) [] [1,2,3]
 r6 = scanl(\x y -> y:x) [] [1,2,3]
 ```
 
-### 함수 적용 / 합성
+<a name="함수적용/합성"></a>
+
+### 3.3.5\. 함수 적용 / 합성
 - composition.hs
 - $ : 함수 적용 연산자
   - $를 주면 우선순위가 가장 낮아진다.

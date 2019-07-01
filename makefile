@@ -3,4 +3,4 @@ hello:
 	hello
 
 toc:
-	markdown-pp README.mdpp -o README.TOC.md
+	markdown-pp README.mdpp -o README.md
