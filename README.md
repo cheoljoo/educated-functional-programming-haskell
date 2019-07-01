@@ -479,7 +479,7 @@ applyTwice f x = f (f x)
   - 람다 표현식 사용 : applyTwice (\x->x*3) 5   
     - 인자가 1개인 곳에 인자 2개로 보낼때 : applyTwice((\x y -> x*y) 2) 5
 
-### 표준 함수 사용하기
+### 함수 활용 - zipWith
 - zipWith : zipWith.hs
   - :t zipWith
   - (a->b->c)->[a]->[b]->[c]
@@ -514,6 +514,8 @@ myzipWith _ _ [] = []
 myzipWith f (x:xs) (y:ys) =  f x y : myzipWith f xs ys
 ```
 
+### 함수 활용 - flip , map
+
 - flip : flip.hs
   - :t flip
   - flip :: (a -> b -> c) -> (b -> a -> c)  argument를 뒤집늦 것임
@@ -532,7 +534,7 @@ myflip2 f x y = f y x
 ```
 
 
-- map
+- map : map.hs
   - map::(a->b) -> [a] -> [b]
 ```haskell
 r1 = map (+3) [1,2,3,4]
@@ -560,4 +562,75 @@ mymap _ [] = []
 mymap f (x:xs)  = f x : mymap f xs
 ```
 
+### 함수의 활용 - filter , fold
+- filter : filter.hs
+  - filter::(a->Bool)->[a]->[a]
+  - 리스트 요소중 조건자(predicator)를 만족하는 요소만을 가진 새로운 리스트 반환
+```haskell
+rp = filter even [1..10]
+    -- [2,4,6,8,10]
+
+r1 = filter (<10) (filter even [1..20])
+    -- [2,4,6,8]
+
+r2 = [x | x<-[1..20], even x , x<10]
+    -- list 통합 문법
+
+    -- elem 1 [1,2,3] =>  true    --> 1 `elem` [1,2,3]
+    -- ` `을 이용하여 뒤에 오는 것을 2번째 인자에 고정
+r3 = filter( `elem` ['a'..'z'] ) "I am a boy"
+    -- "amaboy"
+
+
+-- 1~100까지 3의 배수를 가지는 리스트 만들기
+r4 = filter (\x -> if x `mod` 3 == 0 then True else False) [1..100]
+
+myfilter::(a->Bool)->[a]->[a]
+myfilter _ [] =  []
+myfilter f (x:xs)
+    | f x =x: myfilter f xs
+    | otherwise =  myfilter f xs
+```
+
+- fold : fold.hs
+  - 리스트에 들어있는 모든 요소ㅔ 순서대로 이항 함수를 적용하는 함수
+  - scan 함수 : fold 함수의 중간 과정을 담은 리스트 생성
+```haskell
+r1 = foldl (+) 0 [1,2,3]    -- (((0 + 1) + 2) + 3)
+
+r2 = foldr (+) 0 [1,2,3]    -- ( 1 + (2 + (3 + 0)))
+
+r3 = foldl1 (+) [1,2,3]     -- ((1+2)+3)
+
+r4 = foldr1 (+) [1,2,3]     -- (1+(2+3))
+
+-- [] 1 => 1:[] => [1]
+-- [1] 2 => 2:[1] => [2,1]
+-- [2,1] 3 => 3:[2,1] => [3,2,1]
+r5 = foldl(\x y -> y:x) [] [1,2,3]
+
+r6 = scanl(\x y -> y:x) [] [1,2,3]
+```
+
+### 함수 적용 / 합성
+- composition.hs
+- $ : 함수 적용 연산자
+  - $를 주면 우선순위가 가장 낮아진다.
+    - succ$mac 5 3 => succ(max 5 3)
+  - 공백 : 우선순위가 가장 높다.
+- 함수 합성
+  - negate (succ 3) => -4
+  - (negate . succ) 3
+    - (.) :: (b->c)->(a->b)->a->c     :: 입출력이 어디로 가는지  두번째 함수의 input으로 a가 먼저 들어가게 된다.
+```haskell
+-- 리스트에 있는 모든 요소를 음수로 변경한후
+-- 리스트의 합을 구하고 싶다.
+-- [1,-2,-3,4,-5]
+
+r1 = map negate  [1,-2,-3,4,-5]   -- [-1,2,3,-4,5]
+
+r2 = map (negate . abs)  [1,-2,-3,4,-5]   -- [-1,-2,-3,-4,-5]
+
+r3 = sum $ map (negate . abs)  [1,-2,-3,4,-5]   -- [-1,-2,-3,-4,-5]
+```
 
