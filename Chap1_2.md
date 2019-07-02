@@ -67,7 +67,7 @@
 ## 함수 만들기
 - 함수 이름은 반드시 소문자로 시작
 - 타입은 대문자로 시작
-- func1.hs
+- https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/func1.hs
   - 함수이름::input type -> output type
   - 함수이름 매개변수=함수구현
 
@@ -114,14 +114,14 @@
   - succ(read "1.1"::Double)
   - :i Read
 
-- func4.hs
+- https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/func4.hs
   - if ~ then ~ else : else가 반드시 있어야 한다.
   - haskell에서는 무조건  return을 해야 한다.
   - 2개 이상의 class 제약을 넘기려면 반드시 ( ) 으로 묶어야 한다.
   - :type koo
 
 ## 다형성 상수
-- type.hs
+- https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/type.hs
   - 3은 임의의 타입중에 하나이다.  3::Num a=> a
   - :t 3::Int    <- 3을 int로 type annotation
   - f1 3::Double   <- 에러
@@ -229,7 +229,7 @@
 - 패턴 매치을 사용한 함수 만들기
   - 함수의 인자의 패턴에 따라 서로 다른 구현을 제공
   - 매칭은 위에서부터 match를 한다. 
-  - func5.hs
+  - https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/func5.hs
 ```haskell
  translate::Int -> String -- [Char]
 translate 1 = "one"
@@ -239,7 +239,7 @@ translate _ = "sorry"
 
 ### tuple을 사용하는 패턴 매칭 (func5.hs)
 - addPair (1,1) (2,3)
-- func5.hs
+- https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/func5.hs
   - pair 이용
   - pattern matching 이용
   - + generic 이용
@@ -353,7 +353,7 @@ grade2 score1 score2
 ## Recursion & Curry 
 
 ### Recursion
-- recursion.hs
+- https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/recursion.hs
 ```haskell
 -- recursive function
 -- ex. factorial
@@ -399,7 +399,7 @@ mytake n (x:xs) = x : mytake (n-1) xs
 ```
 
 ### curry
-- curry.hs
+- https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/curry.hs
 - 함수 호출과 결합 방향
   - 함수 호출은 왼쪽에서 오른쪽으로 간다. (ex. succ max 3 5 하면 error가 나오므로 () 으로 먼저 할 것을 묶어주어야 한다.)
  - 함수를 반환하는 함수 만들기
@@ -461,7 +461,7 @@ hoo = (+5)
 ## 고차함수 (HighOrder Function)
 
 ### 고차 (high-order) 함수
-- highorder.hs
+- https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/highorder.hs
 ```haskell
 -- Int -> Int -> Int
 
@@ -480,7 +480,8 @@ applyTwice f x = f (f x)
     - 인자가 1개인 곳에 인자 2개로 보낼때 : applyTwice((\x y -> x*y) 2) 5
 
 ### 함수 활용 - zipWith
-- zipWith : zipWith.hs
+- zipWith :
+  https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/zipWith.hs
   - :t zipWith
   - (a->b->c)->[a]->[b]->[c]
   - 입력 : 이항 함수 , 리스트 , 리스트
@@ -516,7 +517,8 @@ myzipWith f (x:xs) (y:ys) =  f x y : myzipWith f xs ys
 
 ### 함수 활용 - flip , map
 
-- flip : flip.hs
+- flip :
+  https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/flip.hs
   - :t flip
   - flip :: (a -> b -> c) -> (b -> a -> c)  argument를 뒤집늦 것임
   - flip (-) 5 3   ==> -2  (인자 순서가 뒤집어진다.)
@@ -534,7 +536,8 @@ myflip2 f x y = f y x
 ```
 
 
-- map : map.hs
+- map :
+  https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/map.hs
   - map::(a->b) -> [a] -> [b]
 ```haskell
 r1 = map (+3) [1,2,3,4]
@@ -563,7 +566,8 @@ mymap f (x:xs)  = f x : mymap f xs
 ```
 
 ### 함수의 활용 - filter , fold
-- filter : filter.hs
+- filter :
+  https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/filter.hs
   - filter::(a->Bool)->[a]->[a]
   - 리스트 요소중 조건자(predicator)를 만족하는 요소만을 가진 새로운 리스트 반환
 ```haskell
@@ -592,7 +596,8 @@ myfilter f (x:xs)
     | otherwise =  myfilter f xs
 ```
 
-- fold : fold.hs
+- fold :
+  https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/fold.hs
   - 리스트에 들어있는 모든 요소ㅔ 순서대로 이항 함수를 적용하는 함수
   - scan 함수 : fold 함수의 중간 과정을 담은 리스트 생성
 ```haskell
@@ -613,7 +618,7 @@ r6 = scanl(\x y -> y:x) [] [1,2,3]
 ```
 
 ### 함수 적용 / 합성
-- composition.hs
+- https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/composition.hs
 - $ : 함수 적용 연산자
   - $를 주면 우선순위가 가장 낮아진다.
     - succ$mac 5 3 => succ(max 5 3)
