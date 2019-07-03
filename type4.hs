@@ -9,3 +9,9 @@ instance Show Meter where
 
 r1 = Yard 3
 
+
+-- Meter 를 Yard로 변경하는 함수
+
+-- convert (Meter 3)
+convert:: Meter->Yard
+convert (Meter m) = Yard (m * 1.09)     -- Meter , Yard의 생성자를 이용
