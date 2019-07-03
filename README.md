@@ -38,6 +38,30 @@
 3.3.3\.  [함수 활용 - flip , map](#함수활용-flipmap)  
 3.3.4\.  [함수의 활용 - filter , fold](#함수의활용-filterfold)  
 3.3.5\.  [함수 적용 / 합성](#함수적용/합성)  
+4\.  [Type & Type Class](#type&typeclass)  
+4.1\.  [타입과 타입 클래스](#타입과타입클래스)  
+4.1.1\.  [타입 만들기](#타입만들기)  
+4.1.2\.  [타입 클래스와 인스턴스](#타입클래스와인스턴스)  
+4.1.3\.  [data를 사용한 새로운 타입만들기](#data를사용한새로운타입만들기)  
+4.1.4\.  [레코드 구문](#레코드구문)  
+4.1.5\.  [필드 없는 생성자](#필드없는생성자)  
+4.2\.  [Type 생성자 , Type Parameter](#type생성자typeparameter)  
+4.2.1\.  [Type 생성자 , Type Parameter](#type생성자typeparameter-1)  
+4.2.2\.  [Maybe (정말 많이 사용된다)](#maybe정말많이사용된다)  
+4.2.3\.  [Example : 재귀적인 data type](#example:재귀적인datatype)  
+5\.  [Module](#module)  
+5.1\.  [Module](#module-1)  
+5.1.1\.  [Module Import](#moduleimport)  
+6\.  [Monad IO](#monadio)  
+6.1\.  [Monad IO](#monadio-1)  
+6.1.1\.  [Monad](#monad)  
+6.2\.  [- monad1.hs](#-monad1.hs)  
+6.2.1\.  [](#)  
+6.3\.  [- type1.hs](#-type1.hs)  
+6.3.1\.  [](#-1)  
+6.4\.  [- type1.hs](#-type1.hs-1)  
+6.4.1\.  [](#-2)  
+6.5\.  [- type1.hs](#-type1.hs-2)  
 
 <a name="educated-functional-programming-haskell"></a>
 
@@ -132,7 +156,7 @@
 ## 2.6\. 함수 만들기
 - 함수 이름은 반드시 소문자로 시작
 - 타입은 대문자로 시작
-- func1.hs
+- https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/func1.hs
   - 함수이름::input type -> output type
   - 함수이름 매개변수=함수구현
 
@@ -189,7 +213,7 @@
   - succ(read "1.1"::Double)
   - :i Read
 
-- func4.hs
+- https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/func4.hs
   - if ~ then ~ else : else가 반드시 있어야 한다.
   - haskell에서는 무조건  return을 해야 한다.
   - 2개 이상의 class 제약을 넘기려면 반드시 ( ) 으로 묶어야 한다.
@@ -198,7 +222,7 @@
 <a name="다형성상수"></a>
 
 ## 2.10\. 다형성 상수
-- type.hs
+- https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/type.hs
   - 3은 임의의 타입중에 하나이다.  3::Num a=> a
   - :t 3::Int    <- 3을 int로 type annotation
   - f1 3::Double   <- 에러
@@ -324,7 +348,7 @@
 - 패턴 매치을 사용한 함수 만들기
   - 함수의 인자의 패턴에 따라 서로 다른 구현을 제공
   - 매칭은 위에서부터 match를 한다. 
-  - func5.hs
+  - https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/func5.hs
 ```haskell
  translate::Int -> String -- [Char]
 translate 1 = "one"
@@ -336,7 +360,7 @@ translate _ = "sorry"
 
 ### 3.1.1\. tuple을 사용하는 패턴 매칭 (func5.hs)
 - addPair (1,1) (2,3)
-- func5.hs
+- https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/func5.hs
   - pair 이용
   - pattern matching 이용
   - + generic 이용
@@ -460,7 +484,7 @@ grade2 score1 score2
 <a name="recursion"></a>
 
 ### 3.2.1\. Recursion
-- recursion.hs
+- https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/recursion.hs
 ```haskell
 -- recursive function
 -- ex. factorial
@@ -508,7 +532,7 @@ mytake n (x:xs) = x : mytake (n-1) xs
 <a name="curry"></a>
 
 ### 3.2.2\. curry
-- curry.hs
+- https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/curry.hs
 - 함수 호출과 결합 방향
   - 함수 호출은 왼쪽에서 오른쪽으로 간다. (ex. succ max 3 5 하면 error가 나오므로 () 으로 먼저 할 것을 묶어주어야 한다.)
  - 함수를 반환하는 함수 만들기
@@ -574,7 +598,7 @@ hoo = (+5)
 <a name="고차high-order함수"></a>
 
 ### 3.3.1\. 고차 (high-order) 함수
-- highorder.hs
+- https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/highorder.hs
 ```haskell
 -- Int -> Int -> Int
 
@@ -595,7 +619,8 @@ applyTwice f x = f (f x)
 <a name="함수활용-zipwith"></a>
 
 ### 3.3.2\. 함수 활용 - zipWith
-- zipWith : zipWith.hs
+- zipWith :
+  https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/zipWith.hs
   - :t zipWith
   - (a->b->c)->[a]->[b]->[c]
   - 입력 : 이항 함수 , 리스트 , 리스트
@@ -633,7 +658,8 @@ myzipWith f (x:xs) (y:ys) =  f x y : myzipWith f xs ys
 
 ### 3.3.3\. 함수 활용 - flip , map
 
-- flip : flip.hs
+- flip :
+  https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/flip.hs
   - :t flip
   - flip :: (a -> b -> c) -> (b -> a -> c)  argument를 뒤집늦 것임
   - flip (-) 5 3   ==> -2  (인자 순서가 뒤집어진다.)
@@ -651,7 +677,8 @@ myflip2 f x y = f y x
 ```
 
 
-- map : map.hs
+- map :
+  https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/map.hs
   - map::(a->b) -> [a] -> [b]
 ```haskell
 r1 = map (+3) [1,2,3,4]
@@ -682,7 +709,8 @@ mymap f (x:xs)  = f x : mymap f xs
 <a name="함수의활용-filterfold"></a>
 
 ### 3.3.4\. 함수의 활용 - filter , fold
-- filter : filter.hs
+- filter :
+  https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/filter.hs
   - filter::(a->Bool)->[a]->[a]
   - 리스트 요소중 조건자(predicator)를 만족하는 요소만을 가진 새로운 리스트 반환
 ```haskell
@@ -711,7 +739,8 @@ myfilter f (x:xs)
     | otherwise =  myfilter f xs
 ```
 
-- fold : fold.hs
+- fold :
+  https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/fold.hs
   - 리스트에 들어있는 모든 요소ㅔ 순서대로 이항 함수를 적용하는 함수
   - scan 함수 : fold 함수의 중간 과정을 담은 리스트 생성
 ```haskell
@@ -734,7 +763,7 @@ r6 = scanl(\x y -> y:x) [] [1,2,3]
 <a name="함수적용/합성"></a>
 
 ### 3.3.5\. 함수 적용 / 합성
-- composition.hs
+- https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/composition.hs
 - $ : 함수 적용 연산자
   - $를 주면 우선순위가 가장 낮아진다.
     - succ$mac 5 3 => succ(max 5 3)
@@ -755,3 +784,566 @@ r2 = map (negate . abs)  [1,-2,-3,4,-5]   -- [-1,-2,-3,-4,-5]
 r3 = sum $ map (negate . abs)  [1,-2,-3,4,-5]   -- [-1,-2,-3,-4,-5]
 ```
 
+
+
+<a name="type&typeclass"></a>
+
+# 4\. Type & Type Class
+
+<a name="타입과타입클래스"></a>
+
+## 4.1\. 타입과 타입 클래스
+
+<a name="타입만들기"></a>
+
+### 4.1.1\. 타입 만들기
+- [type1.hs](https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/type1.hs)
+- Haskell에서 새로운 타입을 만드는 방법
+  - 기존 타입의 별칭을 만들기
+  - 기존 타입을 사용해서 새로운 타입 만들기
+  - 완전히 새로운 타입 만들기
+ 
+  - 타입 생성자 만들기
+  - 타입 클래스 만들기
+
+- 기존 타입에 별칭을 부여하는 방법
+```haskell
+type Meter = Double     -- 새로운 별명
+    -- type 별칭 = 기존 타입
+
+type Meter = Double
+type Yard = Double
+
+-- Meter 단위 값을 Yard 단위 값으로 변경하는 함수
+
+convert :: Meter->Yard
+convert m = m * 1.093
+```
+
+--------
+
+- [type2.hs](https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/type2.hs)
+- 여기서는 Meter와 Yard가 같은 type이므로 나중에 Meter->Yard를 해야 하는데 , Meter에 Yard를 넣어도 문제가 안된다.
+  - 이때는 기존 타입을 사용한 새로운 타입을 만들어 혼선을 없애야 한다.
+    - newtype 새로운 타입 = 생성자 기본 타입
+    - 새로운 타입의 이름과 생성자는 이름이 달라도 상관없지만 같은 이름을 쓰자
+    - 생성자의 이름은 대문자로 시작
+    - 새로운 타입의 값을 만들려면 생성자를 사용해서 만들어야 한다. Meter 3
+    - 값 생성자 (data constructor)라고 부른다.
+  - 함수 인자로 Meter 타입 받는면
+    - foo $ Meter 3
+    - foo ( Yard 3 ) => 에러
+```haskell
+-- 동일 한 type
+
+-- type Meter = Double
+-- type Yard = Double
+
+
+
+{-
+class Meter
+{
+    Meter(double d){}
+}
+
+new Meter(3);
+-}
+
+
+
+newtype Meter = Meter Double    -- 생성자를 만들어야 한다.
+newtype Yard = Yard Double      -- Yard 3
+
+-- 생성자는 꼭 대문자로 시작해야 한다.
+
+
+-- 테스트 함수
+foo :: Meter -> Int
+foo m = 0
+```
+
+
+---------
+
+- [type3.hs](https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/type3.hs)
+- 사용자 타입을 인자로 받는 경우
+  - 패턴 매칭을 사용해서 받는 경우가 많이 있다.
+  - getValue (Meter m) = m
+    - call할때는 > getValue $ Meter 3  => 3.0
+```haskell
+newtype Meter = Meter Double
+newtype Yard = Yard Double
+
+-- Meter를 받아서 Double을 반환하는 함수
+-- getValue ( Meter 3)  => 3
+
+getValue :: Meter -> Double
+getValue (Meter m) = m      -- ()때문에 1개의 인자로 인식 pattern matching
+
+r1 = getValue $ Meter 3
+-- 3.0
+```
+
+------------
+
+<a name="타입클래스와인스턴스"></a>
+
+### 4.1.2\. 타입 클래스와 인스턴스
+- [type4.hs](https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/type4.hs)
+- 특정 타입의 값을 화면에 출력하려면
+  - Show 타입 클래스의 인스턴스가 되어야 한다.
+  - Show 타입 클래스가 요구하는 함수를 제공해야 한다.
+- 특정 타입을 타입클래스의 인스턴스가 되려면
+  - deriving 지시어 사용
+  - instance 구문제공 
+    - instance Show Yard where
+    - :i Show
+```haskell
+newtype Meter = Meter Double  --deriving Show   -- Meter 3
+newtype Yard = Yard Double
+
+instance Show Yard where
+     show ( Yard y) = show y ++ " yd"
+
+instance Show Meter where
+    show ( Meter m) = show m ++ " m"
+
+r1 = Yard 3
+-- 3.0 yd
+
+
+-- Meter 를 Yard로 변경하는 함수
+
+-- convert (Meter 3)
+convert:: Meter->Yard
+convert (Meter m) = Yard (m * 1.09)     -- Meter , Yard의 생성자를 이용
+
+```
+
+-------
+
+<a name="data를사용한새로운타입만들기"></a>
+
+### 4.1.3\. data를 사용한 새로운 타입만들기
+- [type5.hs](https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/type5.hs)
+- newtype vs data
+  - newtype : 생성자 인자로 한개만 사용가능
+  - data : 생성자 인자로 여러개를 가질수 있다. 생성자를 2개 이상 가실수도 있다.
+- 생성자가 2개 이상 있는 타입을 인자로 받을때
+  - 패턴 매칭을 사용하는 경우가 많다.
+```haskell
+-- 점을 나타내는 point 타입
+
+-- newtype Point = Point Double Double  --error : newtype은 1개의 field만 가져야 한다.
+
+
+data Point  = Point Double Double deriving (Show , Eq)
+
+r1 = Point 1 1
+
+r2 = (Point 1 1) == (Point 0 0)     -- False
+r3 = (Point 1 1) == (Point 1 1)     -- True
+
+
+-- 생성자를 2개 이상 가질수 있다.
+data Shape = Circle Double Double Double | Rectangle Double Double Double Double deriving (Show , Eq)
+
+r4 = Circle 1 1 5
+r5 = Rectangle 1 1 10 10
+
+
+data Shape2 = Circle2 Point  Double | Rectangle2 Point Point deriving (Show , Eq)
+r6 = Circle2 (Point 1 1) 5
+r7 = Rectangle2 (Point 1 1) (Point 10 10)
+
+
+-- Shape2를 사용하는 함수 만들기
+-- 면적을 구하는 함수
+-- area (Circle2 (Point 1 1 ) 5)
+-- area (Rectangle2 (Point 1 1) (Point 10 10))
+
+area :: Shape2->Double
+area (Circle2 pt r) =  3.14 * r^2
+area (Rectangle2 (Point x1 y1) (Point x2 y2)) =   (x2-x1) * (y2-y1)
+
+r8 = area ( Circle2 (Point 1 1) 5)  -- 78.5
+r9 = area ( Rectangle2 (Point 1 1) (Point 10 10)) --  81.0
+```
+
+
+
+-------
+
+<a name="레코드구문"></a>
+
+### 4.1.4\. 레코드 구문
+- [type6.hs](https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/type6.hs)
+- record 구문을 사용하면
+    - 새로운 타입을 만들때 각 필드에 이름을 부여
+    - getter를 자동으로 만들어준다.
+```haskell
+-- People 타입 : 이름 , 나이 , 주소
+
+{-
+data People = People String Int String deriving Show
+
+getName :: People -> String
+getName (People n _ _) = n
+getAge :: People -> Int
+getAge (People _ n _) = n
+
+r1 = getName (People "C" 1 "A1")
+r2 = getAge (People "C" 1 "A1")
+
+-}
+
+-- field가 무지 많을때
+data People = People {name::String
+        ,age::Int
+        ,addr::String} deriving Show
+{-
+- record 구문을 사용하면
+    - 새로운 타입을 만들때 각 필드에 이름을 부여
+    - getter를 자동으로 만들어준다.
+-}
+
+r3 = name (People "kim" 2 "seoul")
+r4 = age (People "kim" 2 "seoul")
+r5 = People { age = 2 , addr = "seoul" , name = "lee"}
+```
+
+
+
+-------
+
+<a name="필드없는생성자"></a>
+
+### 4.1.5\. 필드 없는 생성자
+- [type7.hs](https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/type7.hs)
+- True 생성자와 False 생성자가 있다.
+- True와 False 생성자는 인자를 가지고 있지 않다.
+```haskell
+data Shape = Circle Double Double Double | Rectangle Double Double Double Double deriving (Show , Eq)
+
+{-
+- True 생성자와 False 생성자가 있다.
+- True와 False 생성자는 인자를 가지고 있지 않다.
+ -}
+-- data Bool = True | False
+
+-- :i Bool
+
+r1 = compare 3 5  -- LT
+-- :t compre
+-- compare :: a -> a -> Ordering
+-- :i Ordering
+-- data Ordering = LT | EQ | GT    -- Defined in ‘GHC.Types’
+
+-- 1주일을 표현하고 싶다.
+data Week = Mon | Tue | Wed | Thu | Fri | Sat | Sun
+    deriving (Show , Eq , Enum)
+
+-- Enum이므로 succ 연산 가능
+r2 = succ Mon     -- Tue
+
+
+```
+
+
+
+-------
+
+<a name="type생성자typeparameter"></a>
+
+## 4.2\. Type 생성자 , Type Parameter
+
+<a name="type생성자typeparameter-1"></a>
+
+### 4.2.1\. Type 생성자 , Type Parameter
+- [type8.hs](https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/type8.hs)
+- 타입 생성자 vs 값 생성자 (C++ template)
+  - 타입 생성자 : 타입을 인자로 받아서 새로운 타입을 만드는 생성자
+  - 값 생성자 : 값을 인자로 받아서 해당 타입의 값을 만드는 생성자
+- Shape Int => Shape<int>
+- Shape a  => Shape T
+
+```haskell
+{-
+template <typename T>
+class Shape
+{
+    T x;
+}
+-}
+-- Int 타입 4개로 구성된 Shape 타입
+
+-- data Shape = Rectangle Int Int Int Int
+data Shape a = Rectangle a a a a  deriving Show  -- generic
+
+r1 = Rectangle 1 1 1 1
+
+--  면적을 구하는 함수
+{-
+area :: Shape -> Double     -- Shape 는 type이 아니고 template이다.
+area (Rectangle x1 y1 x2 y2) = (x2-x1)*(y2-y1)
+
+Shape Int => Shape<int>
+Shape a  => Shape T
+-}
+area :: Num a => Shape a -> a     -- Shape 는 type이 아니고 template이다.
+area (Rectangle x1 y1 x2 y2) = (x2-x1)*(y2-y1)
+
+r2 = area (Rectangle 1 1 10 10) -- 81
+```
+
+
+
+-------
+
+<a name="maybe정말많이사용된다"></a>
+
+### 4.2.2\. Maybe (정말 많이 사용된다)
+- [maybe1.hs](https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/maybe1.hs)
+- Maybe Int를 생성하는 방법
+  - Nothing
+  - Just 5
+```haskell
+-- int 의 문제점 : 잘못된 값 (값 없음) 을 표현할수 없다.
+
+{-
+int foo( return 실패; }
+
+struct Maybe
+{
+    bool b; // 유효성
+    int value;
+};
+
+template<typename T> struct Maybe
+{
+    bool b;
+    T value;
+};
+Maybe<int> m; // int를 보관하고 , 값 을 나타낼수 있다.
+            // optional
+-}
+
+-- data Shape a = Circle | Rectangle a
+-- data Maybe a = Nothing | Just a
+
+-- :i Maybe
+-- data Maybe a = Nothing | Just a
+
+-- 입력된 값이 5이상이면 다음수를 반환 / 5 이하이면 실패 반환
+{-
+next :: Int -> Int
+next x
+    | x>5 = succ x
+    | othersize = ??;
+-}
+next :: Int -> Maybe Int     -- 일종이 template
+next x
+    | x>5 = Just (succ x)
+    | otherwise = Nothing ;
+
+r5 = next 5
+
+
+-- Maybe Int 를 받아서 Int 반환
+-- getValue (Just 8)
+getValue :: Maybe Int -> Int
+getValue (Just m) = m
+getValue (Nothing) = 0
+
+r6 = getValue (Just 8)   -- 8
+r7 = getValue (next 8)   -- 9
+r8 = getValue (next 3)   -- 0
+```
+
+
+
+-------
+
+<a name="example:재귀적인datatype"></a>
+
+### 4.2.3\. Example : 재귀적인 data type
+- [ex1.hs](https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/ex1.hs)
+- List 만들기   20 :+ (10 :+ Empty)
+```haskell
+{-
+data List = Empty | Node Int List   deriving Show    -- 재귀적 data type (자기 이름을 또 쓴다.)
+
+r1 = Empty
+r2 = Node 10 Empty
+r3 = Node 20 (Node 10 Empty)
+r4 = Node 30 (Node 20 (Node 10 Empty))
+
+- Empty 생성자 : 비어있는 리스트 생성
+- Node생성자 : 값과 다음 List 를 가지고 List 생성
+-}
+
+{-
+data List a = Empty | Node a (List a)   deriving Show    -- 재귀적 data type (자기 이름을 또 쓴다.)
+r5 = Node 3.3 Empty
+r6 = Node 2.2 (Node 3.3 Empty)
+-}
+
+-- 특수 문자로 생성자 만들기
+-- Node => :+
+-- Node 10 Empty => 10 :+ Empty
+data List a = Empty | a :+ (List a) deriving Show
+r7 = 10 :+ Empty
+r8 = 20 :+ (10 :+ Empty)
+    -- haskell이 가지고 있던 원래 있던 list
+    -- Empty == []
+    -- 1:[] == 1 :+ Empty
+```
+
+- [ex2.hs](https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/ex2.hs)
+- List에 있는 요소가 있는지?  
+```haskell
+-- 1:+Empty
+data List a = Empty | a :+ (List a) deriving Show
+
+
+-- + (+)    전위
+
+-- 하스켈의 리스트를 List 넣기
+r1 = foldr (:+) Empty [1,2,3,4] -- 1 op (2 op (3 op (4 op Empty)))
+    -- 1 :+ (2 :+ (3 :+ (4 :+ Empty)))
+
+-- List에 요소가 있는지 검사
+-- myFind 5 List
+myFind :: (Eq a) => a -> List a -> Bool
+myFind _ Empty  = False
+myFind v (f :+ st)
+    | v == f = True
+    | otherwise = myFind v st
+
+r2 = myFind 5 (3 :+ (2 :+ (5 :+ Empty)))
+r3 = myFind 5 r1
+r4 = myFind 3 r1
+```
+
+-------
+
+
+
+
+
+<a name="module"></a>
+
+# 5\. Module
+
+<a name="module-1"></a>
+
+## 5.1\. Module
+
+<a name="moduleimport"></a>
+
+### 5.1.1\. Module Import
+- [module1.hs](https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/module1.hs)
+- Module
+  - 관련된 함숭와 타입을 묶어놓는 제공하는 단위
+- Prelude
+  - Haskell 기본 모듈
+  - 기본 타입과 다양한 기본 함수 제공
+  - default import
+- 모듈을 import하는 방법
+  - import Data.List
+    - import Data.List (sort)   : sort함수만 import
+    - import Data.List hiding (sort)  : sort함수만 제외
+    - import qualified Data.List  : Data.List.sort 로 완전한 전체 이름을 써 달라.
+    - import qualified DAta.List as L   : L.sort로 사용
+    - :m - Data.List    : Data.List unload
+    - :m + Data.List    : import Data.List
+```haskell
+-- 각 자릿수의 합이 15가 되는 최초의 숫자는?
+-- 1423 => 1+4+2+3 = 10
+
+-- Data.Char.digitToInt
+    --  문자를 하나 받아서 숫자로 변경하는 함수
+-- Data.List.find
+    -- 단항 조건자와  리스트를 받아서 조건을 만족하는 첫번째 요소를 찾는다.
+
+import Data.Char
+import Data.List
+
+-- digitToSum : 숫자를 받아서 각 자리수를 더한 합을 반환
+digitToSum :: Int -> Int
+-- digitToSum x = ... ;    -- 일반적인 함수
+-- 1423 =show=> "1423" =map=> map digitToInt => [1 4 2 3] =sum=> 10
+digitToSum = sum . map digitToInt . show
+
+r1 = digitToSum 1423        -- 10
+
+
+-- calcTo 15 => 어떤 숫자의 자릿수를 더하면 15가 되는지?
+calcTo :: Int -> Maybe Int
+calcTo n = find (\x -> digitToSum x == n) [1..]  -- [1,2,3,4, ....]
+
+r2 = calcTo 15   -- 69
+r3 = calcTo 49   -- 499999
+```
+
+--------
+
+
+
+<a name="monadio"></a>
+
+# 6\. Monad IO
+
+<a name="monadio-1"></a>
+
+## 6.1\. Monad IO
+
+<a name="monad"></a>
+
+### 6.1.1\. Monad
+<a name="-monad1.hs"></a>
+
+6.2\. - [monad1.hs](https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/monad1.hs)
+- 
+```haskell
+```
+
+--------
+
+
+<a name=""></a>
+
+6.2.1\. #6.2.1\. #6.2.1\. #6.2.1\.  6.2.1\. 
+6.2.1\. <a name="-type1.hs"></a>
+
+6.3\. - [type1.hs](https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/type1.hs)
+- 
+```haskell
+```
+
+--------
+
+
+<a name="-1"></a>
+
+6.3.1\. #6.3.1\. #6.3.1\. #6.3.1\.  6.3.1\. 
+6.3.1\. <a name="-type1.hs-1"></a>
+
+6.4\. - [type1.hs](https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/type1.hs)
+- 
+```haskell
+```
+
+--------
+
+
+<a name="-2"></a>
+
+6.4.1\. #6.4.1\. #6.4.1\. #6.4.1\.  6.4.1\. 
+6.4.1\. <a name="-type1.hs-2"></a>
+
+6.5\. - [type1.hs](https://github.com/cheoljoo/educated-functional-programming-haskell/blob/master/type1.hs)
+- 
+```haskell
+```
