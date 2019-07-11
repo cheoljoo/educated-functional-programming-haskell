@@ -100,7 +100,7 @@ r1 = check (1::Int) (2::Int)
     - Maybe 타입 하나를 받아서 타입을 만드는 타입 생성자이다. 
 - Functor
     - class Functor f where
-        - fmap :: Functor f => (a -> b) -> f a -> f b
+        - `fmap :: Functor f => (a -> b) -> f a -> f b`
         - f는 type이 아니라 , type 생성자 이다. (Maybe와 같은 의미)
     - f는 타입생성자 (template) 이다.
 ```haskell
@@ -132,7 +132,7 @@ r2 = xfmap (*2) [1,2]
 - `<*>` 함수
     - applicative 타입 클래스의 인스턴스 타입에만 사용하룻 있다.
     - 리스트 , Maybe , IO
-- >>= 연산자 (pipe)
+- `>>=` 연산자 (pipe)
     - Monad 타입클래스의 인스턴스 타입에만 사용할수 있다.
     - 리스트 , Maybe , IO
 ```haskell
